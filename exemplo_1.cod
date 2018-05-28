@@ -1,0 +1,19 @@
+inicia
+
+funcao principal()
+faca
+	EdmarQueroCem()
+	real Nota
+	inteiro Truncado
+
+	Nota = 67.5
+	Truncado = Nota
+	
+	enquanto Truncado >= 70 # Comentario teste
+	faca
+		imprime( Truncado )
+		Truncado = Truncado + 1
+	fim
+fim
+
+finaliza

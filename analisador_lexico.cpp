@@ -111,7 +111,6 @@ char lookahead(FILE *entrada)
     {
         logger("Erro: Fim do Arquivo inesperado. ");
         return -1;
-        // goto end;
     }
 
     return letra;
@@ -218,7 +217,7 @@ void adiciona_token(string identifier, int linha, int coluna)
     /* Variável */
     else
     {
-        tokens.push_back(Token("VAR", identifier, linha, coluna));
+        tokens.push_back(Token("ID", identifier, linha, coluna));
     }
 }
 
@@ -238,7 +237,7 @@ int main(int argc, char *argv[])
     }
 
     // Tokens serão armazenados em formato <Tipo, Conteúdo, Linha, Coluna>
-    // Tipos de tokens = CLOSE_PAR, OPEN_PAR, DIV, MUL, SUB, SUM, MAIOR, MAIOR_IGUAL, MENOR, MENOR_IGUAL, DIF, ATRIB, LOG_E, LOG_OU, LOG_IGUAL, LOG_OUEXCLUSIVO, LOG_NAO, TIPO_CARACTER, TIPO_LOGICO, TIPO_REAL, TIPO_INTEIRO, COND_CASO, COND_ESCOLHA, COND_SE, COND_SENAO, REP_ENQUANTO, REP_PARA, ESC_FACA, ESC_FIM, ESC_FINALIZA, ESC_FUNCAO, ESC_INICIA, IMP_IMPRIME, IMP_LEIA, VAR, NUM_FLOAT, NUM_INT
+    // Tipos de tokens = CLOSE_PAR, OPEN_PAR, DIV, MUL, SUB, SUM, MAIOR, MAIOR_IGUAL, MENOR, MENOR_IGUAL, DIF, ATRIB, LOG_E, LOG_OU, LOG_IGUAL, LOG_OUEXCLUSIVO, LOG_NAO, TIPO_CARACTER, TIPO_LOGICO, TIPO_REAL, TIPO_INTEIRO, COND_CASO, COND_ESCOLHA, COND_SE, COND_SENAO, REP_ENQUANTO, REP_PARA, ESC_FACA, ESC_FIM, ESC_FINALIZA, ESC_FUNCAO, ESC_INICIA, IMP_IMPRIME, IMP_LEIA, ID, NUM_FLOAT, NUM_INT
     // vector<Token> tokens;
 
     int linha_atual = 1;
@@ -260,19 +259,19 @@ int main(int argc, char *argv[])
         }
         else if (letra == '/')
         {
-            tokens.push_back(Token("DIV", linha_atual, coluna_atual));
+            tokens.push_back(Token("DIV", "OP_ARIT",linha_atual, coluna_atual));
         }
         else if (letra == '*')
         {
-            tokens.push_back(Token("MUL", linha_atual, coluna_atual));
+            tokens.push_back(Token("MUL", "OP_ARIT",linha_atual, coluna_atual));
         }
         else if (letra == '+')
         {
-            tokens.push_back(Token("SUM", linha_atual, coluna_atual));
+            tokens.push_back(Token("SUM", "OP_ARIT",linha_atual, coluna_atual));
         }
         else if (letra == '-')
         {
-            tokens.push_back(Token("SUB", linha_atual, coluna_atual));
+            tokens.push_back(Token("SUB", "OP_ARIT", linha_atual, coluna_atual));
         }
 
         /* Tokens que necessitam de lookahead. */
@@ -439,7 +438,6 @@ int main(int argc, char *argv[])
         coluna_atual++;
     }
 
-end:
     imprime_tokens(tokens);
     imprime_erros(erros);
     return 0;
